@@ -1,4 +1,5 @@
-﻿using Capstone.Views;
+﻿using Capstone.DAL;
+using Capstone.Views;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
@@ -17,11 +18,14 @@ namespace Capstone
             IConfigurationRoot configuration = builder.Build();
 
             string connectionString = configuration.GetConnectionString("Project");
-            //ParkSqlDAO parkDAO = new ParkSqlDAO(connectionString)
+            ParkSqlDAO parkDAO = new ParkSqlDAO(connectionString);
+
+            
+
 
 
             // Create a menu and run it
-            SampleMenu menu = new SampleMenu();
+            ParksMenu menu = new ParksMenu(parkDAO);
             menu.Run();
         }
     }
