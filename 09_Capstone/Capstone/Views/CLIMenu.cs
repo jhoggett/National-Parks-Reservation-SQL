@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.DAL;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,10 @@ namespace Capstone.Views
         /*** 
          * Model Data that this menu system needs to operate on goes here.
          ***/
-
+        protected IParkDAO parkDAO;
+        protected ICampgroundDAO campgroundDAO;
+        protected IReservationDAO reservationDAO;
+        protected ISiteDAO siteDAO;
 
         /// <summary>
         /// This is where every sub-menu puts its options for display to the user.
@@ -24,8 +28,10 @@ namespace Capstone.Views
         /// <summary>
         /// Constructor - pass in model data here
         /// </summary>
-        public CLIMenu()
+        public CLIMenu(IParkDAO parkDAO, ICampgroundDAO campgroundDAO)
         {
+            this.parkDAO = parkDAO;
+            this.campgroundDAO = campgroundDAO;
             this.menuOptions = new Dictionary<string, string>();
         }
 

@@ -8,22 +8,18 @@ namespace Capstone.Views
 {
     public class CampGroundMenu : CLIMenu   
     {
-        //Define DAOs
-        IParkDAO parkDAO;
-        ICampgroundDAO campgroundDAO;
-        ISiteDAO siteDAO;
-        IReservationDAO reservationDAO;
 
-        Park parkSelection;
-        Campground campground;
-        IList<Campground> campgrounds;
+        protected Park parkSelection;
+        protected CampgroundSqlDAO campgroundSqlDAO;
+        protected Campground campground;
+        
         //public CampGroundMenu(int selectedPark)
-        public CampGroundMenu(Park parkSelection, IParkDAO parkDAO, ICampgroundDAO campgroundDAO, ISiteDAO siteDAO, IReservationDAO reservationDAO) : base()
+        public CampGroundMenu(Park parkSelection, IParkDAO parkDAO, ICampgroundDAO campgroundDAO) : base(parkDAO, campgroundDAO)
         {
             this.parkSelection = parkSelection;
             this.Title = $"Campground in {parkSelection.Name}";
             this.menuOptions.Add("1", "View Campgrounds");
-            this.menuOptions.Add("2", "Return to previous screen");
+            this.menuOptions.Add("Q", "Return to previous screen");
             
         }
 
@@ -40,18 +36,25 @@ namespace Capstone.Views
 
         protected override bool ExecuteSelection(string choice)
         {
-            switch (choice)
+            IList<Campground> campgrounds;
+            campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
+            foreach(Campground campground in campgrounds)
             {
-                case "1":
-                    // Display Campgrounds
-                    campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
-                    return true;
-                case "2":
-                    // Return to previous menu
-                    ParksMenu menu = new ParksMenu(parkDAO);
-                    menu.Run();
-                    break;                 
+                Console.WriteLine($"{campground.Name}");
             }
+            //switch (choice)
+            //{
+            //    case "1":
+            //        Display Campgrounds
+            //        campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
+            //        return true;
+            //    case "Q":
+            //        Return to previous menu
+            //        ParksMenu menu = new ParksMenu(parkDAO);
+            //        menu.Run();
+            //        break;
+            //}
+            //return true;
             return true;
         }
     }

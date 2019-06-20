@@ -28,7 +28,7 @@ namespace Capstone.DAL
                 {
                     conn.Open();
 
-                    string sql = "Select name From campground Where campground_id = @campgroundIdToSearchFor or @campgroundIdToSearchFor = ''";
+                    string sql = "Select name From campground Where campground_id = @campgroundIdToSearchFor";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@campgroundIdToSearchFor", campgroundId);
 
@@ -58,16 +58,21 @@ namespace Capstone.DAL
                 {
                     conn.Open();
 
-                    string sql = "Select * From campground Where park_id = @parkIdToSearchFor or @parkIdToSearchFor = ''";
+                    string sql = "Select * From campground Where park_id = @park_id";
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@parkIdToSearchFor", parkId);
+                    cmd.Parameters.AddWithValue("@park_id", parkId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        Campground obj = RowToObject(reader);
-
+                        Campground obj = new Campground();
+                        obj.CampgroundId = Convert.ToInt32(reader["campground_id"]);
+                        obj.ParkId = Convert.ToInt32(reader["park_id"]);
+                        obj.Name = Convert.ToString(reader["name"]);
+                        obj.OpenFromDate = Convert.ToDateTime(reader["open_from_mm"]);
+                        obj.OpenToDate = Convert.ToDateTime(reader["open_to_mm"]);
+                        obj.DailyFee = Convert.ToDecimal(reader["daily_fee"]);
                         list.Add(obj);
                     }
                 }

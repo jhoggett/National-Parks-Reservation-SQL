@@ -15,7 +15,7 @@ namespace Capstone.Views
         IReservationDAO reservationDAO;
 
         private IList<Park> parks;
-        public ParksMenu(IParkDAO parkDAO) : base()
+        public ParksMenu(IParkDAO parkDAO, ICampgroundDAO campgroundDAO) : base(parkDAO, campgroundDAO)
         {
             this.Title = "List of park names";
             parks = parkDAO.GetParks();
@@ -32,7 +32,7 @@ namespace Capstone.Views
             indexChoice--;
             Park parkChoice = parks[indexChoice];
 
-            CampGroundMenu menu = new CampGroundMenu(parkChoice, parkDAO, campgroundDAO, siteDAO, reservationDAO);
+            CampGroundMenu menu = new CampGroundMenu(parkChoice, parkDAO, campgroundDAO);
             menu.Run();
             return true;
 
