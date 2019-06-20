@@ -17,7 +17,7 @@ namespace Capstone
             IConfigurationRoot configuration = builder.Build();
 
             string connectionString = configuration.GetConnectionString("Project");
-
+            //ParkSqlDAO parkDAO = new ParkSqlDAO(connectionString)
 
 
             // Create a menu and run it
