@@ -13,10 +13,5 @@ namespace Capstone.Models
         public int Area { get; set; }
         public int TotalVisitors { get; set; }
         public string Description { get; set; }
-
-        //public override string ToString()
-        //{
-        //    return ParkId + Name + Location + DateEstablished + Area + TotalVisitors + Description;
-        //}
     }
 }

@@ -12,11 +12,6 @@ namespace Capstone.Models
         public int MaxOccupants { get; set; }
         public bool Accessible { get; set; }
         public int MaxRvLength { get; set; }
-        public bool Utitlities { get; set; }
-
-        //public override string ToString()
-        //{
-        //    return SiteId + CampgroundId + SiteNumber + MaxOccupants + MaxRvLength;
-        //}
+        public bool Utilities { get; set; }
     }
 }

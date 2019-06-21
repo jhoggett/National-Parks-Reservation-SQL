@@ -51,7 +51,7 @@ namespace Capstone.DAL
                         obj.MaxOccupants = Convert.ToInt32(reader["max_occupancy"]);
                         obj.Accessible = Convert.ToBoolean(reader["accessible"]);
                         obj.MaxRvLength = Convert.ToInt32(reader["max_rv_length"]);
-                        obj.Utitlities = Convert.ToBoolean(reader["utilities"]);
+                        obj.Utilities = Convert.ToBoolean(reader["utilities"]);
                         list.Add(obj);
                     }
                 }

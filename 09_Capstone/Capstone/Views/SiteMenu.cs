@@ -70,8 +70,25 @@ namespace Capstone.Views
                 IList<Site> sites = siteDAO.GetSitesByCampgroundId(campId, arrival, departure);
                 foreach(Site site in sites)
                 {
-                    Console.WriteLine($"{site.SiteNumber}      {site.MaxOccupants}      {site.Accessible}       {site.MaxRvLength}      {site.Utitlities}       ");
+                    Console.WriteLine($"{site.SiteNumber}      {site.MaxOccupants}      {site.Accessible}       {site.MaxRvLength}      {site.Utilities}       ");
                 }
+                Console.Write("\nWhich site should be reserved? ");
+                string reserveSelection = Console.ReadLine();
+                int reservationSite = int.Parse(reserveSelection);
+                Console.Write("\nWhat name should the reservation be made under? ");
+                string reservationName = Console.ReadLine();
+                
+
+                Reservation reservation = new Reservation
+                {
+                    SiteId = reservationSite,
+                    Name = reservationName,
+                    FromDate = arrival,
+                    ToDate = departure,
+                    CreateDate = DateTime.Now
+                };
+                reservationDAO.AddNewReservation(reservation);
+                Console.WriteLine($"The reservation has been made. Your confirmation id is {reservation.ReservationId}");
                 Pause("Press Enter to go back");
                 return true;
             }

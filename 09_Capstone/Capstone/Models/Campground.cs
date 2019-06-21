@@ -12,10 +12,5 @@ namespace Capstone.Models
         public int OpenFromDate { get; set; }
         public int OpenToDate { get; set; }
         public decimal DailyFee { get; set; }
-
-        //public override string ToString()
-        //{
-        //    return CampgroundId + ParkId + Name + OpenFromDate + OpenToDate + DailyFee;
-        //}
     }
 }
