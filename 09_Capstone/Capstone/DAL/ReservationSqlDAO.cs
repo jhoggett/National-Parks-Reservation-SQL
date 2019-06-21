@@ -17,33 +17,30 @@ namespace Capstone.DAL
 
         public int AddNewReservation(Reservation newReservation)
         {
-            //try
-            //{                
+            int id = 0;
+            try
+            {                
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-
-                    SqlCommand cmd = new SqlCommand("Insert Into reservation (site_id, name, from_date, to_date, create_ date) " +
-                        "Values (@site_id, @name, @from_date, @to_date, @create_date", conn);
+                    
+                    string sql = "Insert Into reservation (site_id, name, from_date, to_date) Values (@site_id, @name, @from_date, @to_date); Select @@identity";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@site_id", newReservation.SiteId);
                     cmd.Parameters.AddWithValue("@name", newReservation.Name);
                     cmd.Parameters.AddWithValue("@from_date", newReservation.FromDate);
                     cmd.Parameters.AddWithValue("@to_date", newReservation.ToDate);
-                    cmd.Parameters.AddWithValue("@create_date", newReservation.CreateDate);
-
-                    cmd.ExecuteNonQuery();
-
-                    cmd = new SqlCommand("Select MAX(reservation_id) From reservation", conn);
-                    int id = Convert.ToInt32(cmd.ExecuteScalar());
-                    return id;
+                    //cmd.Parameters.AddWithValue("@create_date", newReservation.CreateDate);
+                    id = Convert.ToInt32(cmd.ExecuteScalar());
                 }
-            //}
-            //catch (SqlException ex)
-            //{
-            //    Console.WriteLine("Error Making Reservation.");
-            //    Console.WriteLine(ex.Message);
-            //    //throw;
-            //}
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error Making Reservation.");
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+            return id;
         }
     }
 }

@@ -87,8 +87,8 @@ namespace Capstone.Views
                     ToDate = departure,
                     CreateDate = DateTime.Now
                 };
-                reservationDAO.AddNewReservation(reservation);
-                Console.WriteLine($"The reservation has been made. Your confirmation id is {reservation.ReservationId}");
+                int res = reservationDAO.AddNewReservation(reservation);
+                Console.WriteLine($"The reservation has been made. Your confirmation id is {res}");
                 Pause("Press Enter to go back");
                 return true;
             }
