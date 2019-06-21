@@ -29,9 +29,16 @@ namespace Capstone.DAL
                 {
                     conn.Open();
 
-                    string sql = "Select * From site Where campground_id = @campground_id";
+                    string sql = "Select TOP 5 * From site " +
+                        "Where site.campground_id = @campground_id " +
+                        "and site.site_id Not In(Select reservation.site_id From reservation Where reservation.from_date < @arrival " +
+                        "and reservation.to_date > @departure or reservation.from_date > @arrival " +
+                        "and reservation.from_date < @departure or reservation.to_date > @arrival " +
+                        "and reservation.to_date < @departure)";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@campground_id", campgroundId);
+                    cmd.Parameters.AddWithValue("@arrival", arrival);
+                    cmd.Parameters.AddWithValue("@departure", departure);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

@@ -9,6 +9,6 @@ namespace Capstone.DAL
     {
         Site GetSiteById(int siteId);
 
-        IList<Site> GetSitesByCampgroundId(int campgroundId);
+        IList<Site> GetSitesByCampgroundId(int campgroundId, DateTime arrival, DateTime departure);
     }
 }

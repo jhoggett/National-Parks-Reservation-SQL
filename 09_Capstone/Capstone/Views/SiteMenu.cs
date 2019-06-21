@@ -67,7 +67,7 @@ namespace Capstone.Views
                 Console.WriteLine("\n=================================================");
 
                 Console.WriteLine("Site No.     Max Occupancy       Accessible      Max RV Length       Utility     Cost");
-                IList<Site> sites = siteDAO.GetSitesByCampgroundId(campId);
+                IList<Site> sites = siteDAO.GetSitesByCampgroundId(campId, arrival, departure);
                 foreach(Site site in sites)
                 {
                     Console.WriteLine($"{site.SiteNumber}      {site.MaxOccupants}      {site.Accessible}       {site.MaxRvLength}      {site.Utitlities}       ");
