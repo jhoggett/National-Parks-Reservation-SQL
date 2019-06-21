@@ -14,7 +14,7 @@ namespace Capstone.Views
         protected Campground campground;
         
         //public CampGroundMenu(int selectedPark)
-        public CampGroundMenu(Park parkSelection, IParkDAO parkDAO, ICampgroundDAO campgroundDAO) : base(parkDAO, campgroundDAO)
+        public CampGroundMenu(Park parkSelection, IParkDAO parkDAO, ICampgroundDAO campgroundDAO, IReservationDAO reservationDAO, ISiteDAO siteDAO) : base(parkDAO, campgroundDAO, reservationDAO, siteDAO)
         {
             this.parkSelection = parkSelection;
             this.Title = $"Campground in {parkSelection.Name}";
@@ -36,8 +36,8 @@ namespace Capstone.Views
 
         protected override bool ExecuteSelection(string choice)
         {
-            IList<Campground> campgrounds;
-            campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
+            IList<Campground> campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
+
             foreach(Campground campground in campgrounds)
             {
                 Console.WriteLine($"{campground.Name}");

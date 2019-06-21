@@ -9,13 +9,13 @@ namespace Capstone.Views
     public class ParksMenu : CLIMenu
     {
         //Define DAOs
-        IParkDAO parkDAO;
-        ICampgroundDAO campgroundDAO;
-        ISiteDAO siteDAO;
-        IReservationDAO reservationDAO;
+        //IParkDAO parkDAO;
+        //ICampgroundDAO campgroundDAO;
+        //ISiteDAO siteDAO;
+        //IReservationDAO reservationDAO;
 
         private IList<Park> parks;
-        public ParksMenu(IParkDAO parkDAO, ICampgroundDAO campgroundDAO) : base(parkDAO, campgroundDAO)
+        public ParksMenu(IParkDAO parkDAO, ICampgroundDAO campgroundDAO, IReservationDAO reservationDAO, ISiteDAO siteDAO) : base(parkDAO, campgroundDAO, reservationDAO, siteDAO)
         {
             this.Title = "List of park names";
             parks = parkDAO.GetParks();
@@ -32,7 +32,7 @@ namespace Capstone.Views
             indexChoice--;
             Park parkChoice = parks[indexChoice];
 
-            CampGroundMenu menu = new CampGroundMenu(parkChoice, parkDAO, campgroundDAO);
+            CampGroundMenu menu = new CampGroundMenu(parkChoice, parkDAO, campgroundDAO, reservationDAO, siteDAO);
             menu.Run();
             return true;
 

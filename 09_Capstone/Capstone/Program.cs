@@ -20,6 +20,8 @@ namespace Capstone
             string connectionString = configuration.GetConnectionString("Project");
             ParkSqlDAO parkDAO = new ParkSqlDAO(connectionString);
             CampgroundSqlDAO campgroundDAO = new CampgroundSqlDAO(connectionString);
+            ReservationSqlDAO reservationDAO = new ReservationSqlDAO(connectionString);
+            SiteSqlDAO siteDAO = new SiteSqlDAO(connectionString);
             // need reservationsqldao and sitesqldao
 
             
@@ -27,7 +29,7 @@ namespace Capstone
 
 
             // Create a menu and run it
-            ParksMenu menu = new ParksMenu(parkDAO, campgroundDAO);
+            ParksMenu menu = new ParksMenu(parkDAO, campgroundDAO, reservationDAO, siteDAO);
             menu.Run();
         }
     }

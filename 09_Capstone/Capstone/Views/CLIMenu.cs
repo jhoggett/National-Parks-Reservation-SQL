@@ -28,10 +28,12 @@ namespace Capstone.Views
         /// <summary>
         /// Constructor - pass in model data here
         /// </summary>
-        public CLIMenu(IParkDAO parkDAO, ICampgroundDAO campgroundDAO)
+        public CLIMenu(IParkDAO parkDAO, ICampgroundDAO campgroundDAO, IReservationDAO reservationDAO, ISiteDAO siteDAO)
         {
             this.parkDAO = parkDAO;
             this.campgroundDAO = campgroundDAO;
+            this.reservationDAO = reservationDAO;
+            this.siteDAO = siteDAO;
             this.menuOptions = new Dictionary<string, string>();
         }
 
