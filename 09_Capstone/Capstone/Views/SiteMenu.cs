@@ -48,6 +48,7 @@ namespace Capstone.Views
                     Console.WriteLine($"{campground.CampgroundId,-1}      {campground.Name,-1}      {campground.OpenFromDate,-1}      {campground.OpenToDate,-1}        {campground.DailyFee,-1}");
 
                 }
+                // Asks user for campground and reservation start and end date to get available sites
                 Console.WriteLine("===================================================");
                 Console.WriteLine("\nEnter Q to go back");
                 Console.Write("\nPlease Select a Campground Number: ");
@@ -57,10 +58,20 @@ namespace Capstone.Views
                 Console.Write("\nWhat is the departure date? MM/DD/YYYY: ");
                 string departureDate = Console.ReadLine();
 
-                int.Parse(campgroundChoice);
-                DateTime.Parse(arrivalDate);
-                DateTime.Parse(departureDate);
+                int campId = int.Parse(campgroundChoice);
+                DateTime arrival = DateTime.Parse(arrivalDate);
+                DateTime departure = DateTime.Parse(departureDate);
                 Console.Clear();
+
+                Console.WriteLine("Available Campsites matching your search criteria");
+                Console.WriteLine("\n=================================================");
+
+                Console.WriteLine("Site No.     Max Occupancy       Accessible      Max RV Length       Utility     Cost");
+                IList<Site> sites = siteDAO.GetSitesByCampgroundId(campId);
+                foreach(Site site in sites)
+                {
+                    Console.WriteLine($"{site.SiteNumber}      {site.MaxOccupants}      {site.Accessible}       {site.MaxRvLength}      {site.Utitlities}       ");
+                }
                 Pause("Press Enter to go back");
                 return true;
             }

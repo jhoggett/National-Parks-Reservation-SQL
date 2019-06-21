@@ -13,6 +13,7 @@ namespace Capstone.DAL
             connectionString = databaseConnectionString;
         }
 
+
         public bool AddNewReservation(Reservation newReservation)
         {
             throw new NotImplementedException();
