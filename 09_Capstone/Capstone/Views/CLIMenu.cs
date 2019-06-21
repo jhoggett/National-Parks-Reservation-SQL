@@ -216,7 +216,7 @@ namespace Capstone.Views
         /// <param name="message"></param>
         protected void Pause(string message)
         {
-            Console.Write(message + " Press Enter to continue.");
+            Console.Write(message);
             Console.ReadLine();
         }
         #endregion
