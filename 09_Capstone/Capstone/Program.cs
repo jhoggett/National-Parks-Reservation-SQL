@@ -22,7 +22,6 @@ namespace Capstone
             CampgroundSqlDAO campgroundDAO = new CampgroundSqlDAO(connectionString);
             ReservationSqlDAO reservationDAO = new ReservationSqlDAO(connectionString);
             SiteSqlDAO siteDAO = new SiteSqlDAO(connectionString);
-            // need reservationsqldao and sitesqldao
 
             
 

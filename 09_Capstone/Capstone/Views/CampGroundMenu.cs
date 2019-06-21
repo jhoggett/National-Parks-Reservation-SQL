@@ -38,23 +38,9 @@ namespace Capstone.Views
         {
             IList<Campground> campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
 
-            foreach(Campground campground in campgrounds)
-            {
-                Console.WriteLine($"{campground.Name}");
-            }
-            //switch (choice)
-            //{
-            //    case "1":
-            //        Display Campgrounds
-            //        campgrounds = campgroundDAO.GetCampgroundsByParkId(parkSelection.ParkId);
-            //        return true;
-            //    case "Q":
-            //        Return to previous menu
-            //        ParksMenu menu = new ParksMenu(parkDAO);
-            //        menu.Run();
-            //        break;
-            //}
-            //return true;
+            SiteMenu menu = new SiteMenu(campgrounds, parkSelection, parkDAO, campgroundDAO, reservationDAO, siteDAO);
+            menu.Run();
+
             return true;
         }
     }

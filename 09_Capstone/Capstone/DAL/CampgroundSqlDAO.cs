@@ -70,8 +70,8 @@ namespace Capstone.DAL
                         obj.CampgroundId = Convert.ToInt32(reader["campground_id"]);
                         obj.ParkId = Convert.ToInt32(reader["park_id"]);
                         obj.Name = Convert.ToString(reader["name"]);
-                        obj.OpenFromDate = Convert.ToDateTime(reader["open_from_mm"]);
-                        obj.OpenToDate = Convert.ToDateTime(reader["open_to_mm"]);
+                        obj.OpenFromDate = Convert.ToInt32(reader["open_from_mm"]);
+                        obj.OpenToDate = Convert.ToInt32(reader["open_to_mm"]);
                         obj.DailyFee = Convert.ToDecimal(reader["daily_fee"]);
                         list.Add(obj);
                     }
@@ -90,8 +90,8 @@ namespace Capstone.DAL
             obj.CampgroundId = Convert.ToInt32(row["CampgroundId"]);
             obj.ParkId = Convert.ToInt32(row["ParkId"]);
             obj.Name = Convert.ToString(row["Name"]);
-            obj.OpenFromDate = Convert.ToDateTime(row["OpenFromDate"]);
-            obj.OpenToDate = Convert.ToDateTime(row["OpenToDate"]);
+            obj.OpenFromDate = Convert.ToInt32(row["OpenFromDate"]);
+            obj.OpenToDate = Convert.ToInt32(row["OpenToDate"]);
             obj.DailyFee = Convert.ToDecimal(row["DailyFee"]);
             return obj;
         }
